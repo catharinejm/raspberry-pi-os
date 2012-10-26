@@ -27,8 +27,9 @@ mainLoop$:
   .unreq pinNum
   .unreq pinVal
 
-  mov r0,#0x3F0000
-  bl wait$
+  
+  ldr r0,=1000000
+  bl Sleep
 
   pinNum .req r0
   pinVal .req r1
@@ -38,15 +39,8 @@ mainLoop$:
   .unreq pinNum
   .unreq pinVal
 
-  mov r0,#0x3F0000
-  bl wait$
+  ldr r0,=1000000
+  bl Sleep
 
   b mainLoop$
 
-wait$:
-  cycles .req r0
-  sub cycles,#1
-  cmp cycles,#0
-  bne wait$
-  .unreq cycles
-  mov pc,lr
